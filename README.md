@@ -8,8 +8,10 @@
 
 ## ConsoleUI
 - [YouTube link](https://youtu.be/3MP0RpHBDxk)
+
 ![alt tag](https://raw.github.com/zamgo/slide-a-lama/master/screenshot_console.jpg)
 
 ## WebUI
 - [YouTube link](https://youtu.be/N7ISGHZbpDA)
+
 ![alt tag](https://raw.github.com/zamgo/slide-a-lama/master/screenshot_web.jpg)
