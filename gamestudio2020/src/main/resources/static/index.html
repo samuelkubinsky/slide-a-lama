@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gamestudio</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="/css/stylesheet.css"/>
+</head>
+<body>
+<h1>Welcome to Gamestudio!</h1>
+
+<div th:if="${@userController.logged}">
+    You are logged as <span th:text="${@userController.loggedUser}"/>.
+    <a href="/user/logout">Logout</a>
+</div>
+
+<div th:if="${not @userController.logged}">
+    <form method="get" action="/user/login">
+        Login: <input name="login" type="text"/>
+        <input type="submit" value="Login">
+    </form>
+</div>
+
+<div>
+    Our favorite games:
+    <ul>
+        <li><a href="/slidealama-kubinsky">Slide-a-Lama</a></li>
+    </ul>
+</div>
+</body>
+</html>

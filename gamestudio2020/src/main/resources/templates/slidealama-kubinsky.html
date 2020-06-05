@@ -1,0 +1,244 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="/css/slidealama-kubinsky.css"/>
+    <link rel="icon" type="image/png" href="/images/slidealama/kubinsky/favicon-196.png" sizes="196x196"/>
+    <title>Slide-a-Lama</title>
+</head>
+
+<body>
+
+<nav class="navbar navbar-light bg-light mb-3">
+    <a href="/" style="text-decoration: none;"><i class="fas fa-chevron-left"></i> Back</a>
+    <span class="font-weight-bold">Slide-a-Lama</span>
+    <span>Samuel Kubinský</span>
+</nav>
+
+<!-- Player names -->
+<div class="container" th:classappend="${namesSet} ? d-none" : d-block>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <form action="#" th:action="@{/slidealama-kubinsky/processNames}" th:object="${playerNames}" method="post" class="p-3 mb-3 bg-light rounded">
+            <h3 class="font-weight-bold">Player names</h3>
+            <span class="mb-3">Enter 3-10 characters</span>
+
+            <div class="row pt-3">
+                <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 pb-3">
+                    <input th:field="*{playerOneName}" type="text" class="form-control" placeholder="Enter P1 name" required pattern="\s*(\S\s*){3,10}"/>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 pb-3">
+                    <input th:field="*{playerTwoName}" type="text" class="form-control" placeholder="Enter P2 name" required pattern="\s*(\S\s*){3,10}"/>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 col-xl-2">
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Game -->
+<div class="container" th:classappend="${namesSet} ? d-block : d-none">
+    <div class="col-12">
+
+        <!-- Game elements -->
+        <div class="row">
+            <!-- Game state -->
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                <div class="p-3 rounded mb-3 bg-light">
+                    <div class="row">
+                        <div class="col-6">
+                            <h3 class="font-weight-bold">Game</h3>
+                            <span th:text="${gameState}"></span>
+                        </div>
+                        <div class="col-6" align="right">
+                            <a href="/slidealama-kubinsky/new" type="button" class="btn btn-primary vertical-center">New game</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Players -->
+            <div th:utext="${playersHtml}" th:remove="tag"></div>
+
+            <!-- Instructions -->
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                <div class="p-3 bg-light rounded mb-3">
+                    <h3 class="font-weight-bold">Instructions</h3>
+                    <p class="py-1">First player to 300 points wins!</p>
+
+                    <!-- Sevens -->
+                    <div class="pb-1">
+                        <img src="/images/slidealama/kubinsky/seven.png" height="32">
+                        <img src="/images/slidealama/kubinsky/seven.png" height="32">
+                        <img src="/images/slidealama/kubinsky/seven.png" height="32">
+                        <span> - 150</span>
+                    </div>
+
+                    <!-- Bars -->
+                    <div class="pb-1">
+                        <img src="/images/slidealama/kubinsky/bar.png" height="32">
+                        <img src="/images/slidealama/kubinsky/bar.png" height="32">
+                        <img src="/images/slidealama/kubinsky/bar.png" height="32">
+                        <span> - 100</span>
+                    </div>
+
+                    <!-- Cherries -->
+                    <div class="pb-1">
+                        <img src="/images/slidealama/kubinsky/cherry.png" height="32">
+                        <img src="/images/slidealama/kubinsky/cherry.png" height="32">
+                        <img src="/images/slidealama/kubinsky/cherry.png" height="32">
+                        <span> - 70</span>
+                    </div>
+
+                    <!-- Pears -->
+                    <div class="pb-1">
+                        <img src="/images/slidealama/kubinsky/pear.png" height="32">
+                        <img src="/images/slidealama/kubinsky/pear.png" height="32">
+                        <img src="/images/slidealama/kubinsky/pear.png" height="32">
+                        <span> - 40</span>
+                    </div>
+
+                    <!-- Plums -->
+                    <div class="pb-1">
+                        <img src="/images/slidealama/kubinsky/plum.png" height="32">
+                        <img src="/images/slidealama/kubinsky/plum.png" height="32">
+                        <img src="/images/slidealama/kubinsky/plum.png" height="32">
+                        <span> - 30</span>
+                    </div>
+
+                    <!-- Bananas -->
+                    <div class="pb-1">
+                        <img src="/images/slidealama/kubinsky/banana.png" height="32">
+                        <img src="/images/slidealama/kubinsky/banana.png" height="32">
+                        <img src="/images/slidealama/kubinsky/banana.png" height="32">
+                        <span> - 20</span>
+                    </div>
+
+                    <!-- Bells -->
+                    <div class="pb-1">
+                        <img src="/images/slidealama/kubinsky/bell.png" height="32">
+                        <img src="/images/slidealama/kubinsky/bell.png" height="32">
+                        <img src="/images/slidealama/kubinsky/bell.png" height="32">
+                        <span> - 10</span>
+                    </div>
+
+                    <!-- Multipliers -->
+                    <div>
+                        <p class="m-0 p-0 pt-1">4 of a kind - x2</p>
+                        <p class="m-0 p-0 py-1">5 of a kind - x3</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Field -->
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
+                <div th:utext="${fieldHtml}" class="bg-light rounded py-4 mb-5" align="center"></div>
+            </div>
+        </div>
+
+        <!-- HOF -->
+        <div class="bg-light p-3 rounded mb-3">
+            <h3 class="font-weight-bold">Hall of Fame</h3>
+
+            <div class="col-12">
+                <ol class="m-0 p-0 pl-3">
+                    <li th:each="score : ${scores}">
+                        <span th:text="${score.player}" class="font-weight-bold"></span>
+                        <span>: </span>
+                        <span th:text="${score.points}"></span>
+                        <span> points</span>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Add rating -->
+        <div class="bg-light p-3 rounded mb-3">
+            <h3 class="font-weight-bold">Add rating</h3>
+
+            <form action="#" th:action="@{/slidealama-kubinsky/processRating}" th:object="${rating}" method="post">
+                <div class="form-group">
+                    <label for="add-rating">Rate 1 (worst) - 5 (best)</label>
+                    <input th:field="*{rating}" class="form-control" id="add-rating" type="number" min="1" max="5"/>
+                </div>
+
+                <button type="submit" class="btn btn-primary" name="action" value="1">
+                    <span>Submit as <span th:text="${playerOneName}" th:remove="tag"></span></span>
+                </button>
+
+                <button type="submit" class="btn btn-primary" name="action" value="2">
+                    <span>Submit as <span th:text="${playerTwoName}" th:remove="tag"></span></span>
+                </button>
+            </form>
+        </div>
+
+        <!-- Get rating -->
+        <div class="bg-light p-3 rounded mb-3">
+            <h3 class="font-weight-bold pb-2">Ratings</h3>
+
+            <div class="mx-3">
+                <!-- Average rating -->
+                <h5 class="font-weight-bold">Average rating:</h5>
+                <p th:text="${avgRating}"></p>
+
+                <hr/>
+
+                <!-- P1 rating -->
+                <h5 class="font-weight-bold">
+                    <span th:text="${playerOneName}" th:remove="tag"></span>'s rating:
+                </h5>
+                <p th:text="${playerOneRating}"></p>
+
+                <hr/>
+
+                <!-- P2 rating -->
+                <h5 class="font-weight-bold">
+                    <span th:text="${playerTwoName}" th:remove="tag"></span>'s rating:
+                </h5>
+                <p th:text="${playerTwoRating}"></p>
+
+                <hr/>
+            </div>
+        </div>
+
+
+        <!-- Add comment -->
+        <div class="bg-light p-3 rounded mb-3">
+            <h3 class="font-weight-bold pb-2">Add comment</h3>
+
+            <form action="#" th:action="@{/slidealama-kubinsky/processComment}" th:object="${comment}" method="post">
+                <div class="form-group">
+                    <textarea th:field="*{comment}" class="form-control" rows="4" placeholder="Enter comment"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary" name="action" value="1">
+                    <span>Submit as <span th:text="${playerOneName}" th:remove="tag"></span></span>
+                </button>
+
+                <button type="submit" class="btn btn-primary" name="action" value="2">
+                    <span>Submit as <span th:text="${playerTwoName}" th:remove="tag"></span></span>
+                </button>
+            </form>
+        </div>
+
+        <!-- Comments -->
+        <div class="bg-light p-3 rounded mb-3">
+            <h3 class="font-weight-bold pb-2">Comments</h3>
+
+            <div th:each="comment : ${comments}" class="mx-3">
+                <h5 th:text="${comment.player}" class="font-weight-bold"></h5>
+                <span th:text="${comment.comment}"></span>
+                <hr/>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="https://kit.fontawesome.com/025c521b5d.js" crossorigin="anonymous"></script>
+
+</body>
+</html>
