@@ -7,7 +7,7 @@
 - implements - JUnit, Maven, Spring Boot, JDBC, JPA, Rest, Thymeleaf
 
 ## ConsoleUI screenshot
-![alt tag](https://raw.github.com/zamgo/slide-a-lama/master/screenshot-console.jpg)
+![alt tag](https://raw.github.com/zamgo/slide-a-lama/master/screenshot_console.jpg)
 
 ## WebUI screenshot
-![alt tag](https://raw.github.com/zamgo/slide-a-lama/master/screenshot-web.jpg)
+![alt tag](https://raw.github.com/zamgo/slide-a-lama/master/screenshot_web.jpg)
